@@ -1,7 +1,7 @@
 using System;
 public class Journal
 {
-    public List<Entry> _entries;
+    public List<Entry> _entries = new List<Entry>();
 
     public void AddEntry(Entry newEntry)
     {
@@ -14,12 +14,12 @@ public class Journal
 
     public void DisplayAll()
     {
-        foreach (newEntry in Entry)
+        foreach (Entry e in _entries)
         {
-            DateTime theCurrentTime = DateTime.Now;
-            string dateText = theCurrentTime.ToShortDateString();
-            Console.WriteLine("Date: " + dateText);
-            Console.Write($"- Prompt: ")
+            
+            Console.WriteLine("Date: " + e._dateText);
+            Console.Write($"- Prompt: " + e._promptText);
+            Console.Write($"- Entry: " + e._entryText);
         }
 
 
