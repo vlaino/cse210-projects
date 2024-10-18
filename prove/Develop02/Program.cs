@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 class Program
 {
@@ -15,7 +16,7 @@ class Program
         theJournal.DisplayAll();
         theJournal.SavetoFile();
         theJournal.LoadFromFile();
-        
+
         int option = 0;
         do
         {

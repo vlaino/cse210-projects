@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 public class Journal
 {
     public List<Entry> _entries = new List<Entry>();
@@ -14,13 +15,7 @@ public class Journal
 
     public void DisplayAll()
     {
-        foreach (Entry e in _entries)
-        {
-            
-            Console.WriteLine("Date: " + e._dateText);
-            Console.Write($"- Prompt: " + e._promptText);
-            Console.Write($"- Entry: " + e._entryText);
-        }
+        e.Display();
 
 
     }
@@ -41,6 +36,15 @@ public class Journal
 
     public void LoadFromFile (string file)
     {
+        string fileName = "myFile.txt";
+        using (StreamWriter outputFile = new StreamWriter(filename))
+
+    // You can add text to the file with the WriteLine method
+        outputFile.WriteLine("This will be the first line in the file.");
+    
+    // You can use the $ and include variables just like with Console.WriteLine
+        string color = "Blue";
+        outputFile.WriteLine($"My favorite color is {color}");
 
     }
 }

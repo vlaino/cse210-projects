@@ -7,11 +7,13 @@ public class Scripture
 
     public Scripture(Reference _reference, string text)
     {
+        _text = text;
 
     }
 
     public void HideRandomWords(int numberToHide)
     {
+        numberToHide = text.Length;
 
     }
 

@@ -7,9 +7,12 @@ public class Entry
 
     public void Display()
     {
+        Console.WriteLine($"Date: {_date}");
+        Console.WriteLine($"- Prompt: {_promptText}");
+        Console.WriteLine($"- Entry: {_entryText}");
         DateTime theCurrentTime = DateTime.Now;
         string _dateText = theCurrentTime.ToShortDateString();
-        e._dateText = _dateText 
+        e._dateText = _dateText;
 
     }
 }
