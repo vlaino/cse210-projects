@@ -20,7 +20,7 @@ public class Reference
 
     }
 
-    public GetDisplayText(string)
+    public string GetDisplayText()
     {
 
     }
