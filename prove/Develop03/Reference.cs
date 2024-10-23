@@ -3,26 +3,46 @@ using System;
 public class Reference
 {
     private string _book;
-    private int _chapter;
-    private int _verse;
-    private int _endVerse;
+    private List<int> _chapters;
+    private List<(int startVerse, int endVerse)> _versesRanges;
 
     public Reference(string book, int chapter, int verse)
     {
-        _book = book
-        _chapter = chapter
-        _verse = verse
+        _book = book;
+        _chapters = new List<int> { chapter };
+        _versesRanges = new List<(int, int)> { (verse, verse) };
 
     }
 
     public Reference(string book, int chapter, int startVerse, int endVerse)
     {
+        _book = book;
+        _chapters = new List<int> { chapter };
+        _versesRanges = new List<(int, int)> { (startVerse, endVerse) };
 
     }
 
-    public string GetDisplayText()
+    public override string GetDisplayText()
     {
+        return $"{_book} {_chapter}: {verse}";
+        /*string referenceString = $"{_book} ";
+        for (int i = 0; i < _chapters.Count; i++)
+        {
+            referenceString += $"{_chapters[i]}:";
+            referenceString += $"{_versesRanges[i].startVerse}";
+
+            if (_versesRanges[i].startVerse != _versesRanges[i].endVerse)
+            {
+                referenceString += $"-{_verseRange[i].endVerse}";
+            }
+
+            if (i < _chapters.Count -1)
+            {
+                referenceString += ",";
+            }
+        }
+
+        return referenceString;*/
 
     }
 }
-

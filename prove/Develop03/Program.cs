@@ -1,18 +1,31 @@
 using System;
+using System.Collections.Generic;
+
 
 class Program
 {
     static void Main(string[] args)
     {
-        Word word1 = new Word();
-        Scripture scripture1 = new Scripture();
-        Reference reference1 = new Reference();
+        Reference reference = new Reference("John", 3, 16);
+        Scripture scripture = new Scripture(reference,"For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life");
 
-        reference1 = "Juan 3:16";
-        scripture1 = "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life";
+        while (!scripture.IsCompletelyHidden())
+        {
+            Console.Clear();
+            Console.WriteLine(scripture.Scripture());
+            Console.WriteLine(scripture.GetDisplayText());
+            Console.WriteLine("\nPress enter to continue or type 'quit' to finish: " );
+            string input = Console.ReadLine();
 
-        Console.WriteLine(reference1 scripture1);
+            if (input.ToLower() == "quit")
+            {
+                break;
+            }
 
-        Console.WriteLine("Press enter to continue or type 'quit' to finish: " )
+            scripture.HideRandomWords(3);
+
+        }
+
+
     }
 }
