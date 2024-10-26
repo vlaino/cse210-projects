@@ -2,50 +2,35 @@ using System;
 
 public class Word
 {
-    private string _text;
-    private bool _isHidden;
+    private string _word;
 
-    public Word(string text)
+    public Word(string word)
     {
-        _text = text;
-        _isHidden = false;
-
+        _word = word;
 
     }
 
-    public void Hide()
+    public string Hide()
     {
-        _isHidden = true;
+        return _word = "__";
 
     }
 
-    public void Show()
+
+    public bool IsHidden(string word)
     {
-        _isHidden = false;
-
-    }
-
-    public bool IsHidden()
-    {
-        return _isHidden;
-
-    }
-
-    public string GetDisplayText()
-    {
-        if (_isHidden == true)
+        if (word == "_")
         {
-            string hiddenText = "";
-            foreach (char letter in _text)
-            {
-                hiddenText += "_";
-            }
-            return hiddenText;
+            return true;
         }
-        else 
+        else
         {
-            return _text;
+            return false;
         }
 
     }
+
+   
+
+    
 }

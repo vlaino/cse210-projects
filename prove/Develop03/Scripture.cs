@@ -3,66 +3,95 @@ using System.Collections.Generic;
 
 public class Scripture
 {
-    private Reference _reference;
-    private List<Word> _words = new List<Word>();
-    private Random _random = new Random();
+    //private Reference _reference;
+    private List<string> _words = new List<string>();
+    //private Random _random = new Random();
 
-    public Scripture(Reference reference, string text)
+    public Scripture(string text)
     {
-        _reference = reference;
-        string[] strAry = text.Split();
+        List<string> wordsList = new List<string>(text.Split(" "));
+        _words.AddRange(wordsList);
+        /*_reference = reference;
+        string[] strAry = _text.Split();
         foreach (string word in strAry)
         {
             Word wordObj = new Word(word);
             _words.Add(wordObj);  
-        }
+        }*/
     }
 
-    public void HideRandomWords(int numberToHide)
+    public void HideRandomWords()
     {
-        int wordsHidden = 0;
+        Random random = new Random();
+
+        bool run = true;
+        while(run)
+        {
+            int randomNumber = random.Next(_words.Count);
+
+            Word singleWord = new Word(_words[randomNumber]);
+            if (singleWord.IsHidden(_words[randomNumber]) != true)
+            {
+                string change = singleWord.Hide();
+                _words[randomNumber] = change;
+                run = false;
+            }
+        }
+        /*int wordsHidden = 0;
 
         while (wordsHidden < numberToHide && !IsCompletelyHidden())
         {
             int index = _random.Next(_words.Count);
 
-            if(!_words[index].IsHidden)
+            if(!_words[index].IsHidden())
             {
                 _words[index].Hide();
                 wordsHidden++;
             }
-        }
+        }*/
 
     }
 
     public string GetDisplayText()
     {
-        List<string> displayWords = new List<string>();
+        return string.Join(" ", _words);
+        /*List<string> displayWords = new List<string>();
 
         foreach (Word word in _words)
         {
-            if (word.IsHidden)
+            if (_words.IsHidden)
             {
-                displayWords.Add(new string ("_", word.Text.Length));
+                displayWords.Add(new string ("_", word._text.Length));
             }
             else
             {
-                displayWords.Add(word.Text);
+                displayWords.Add(word._text);
             }
-        }
+        }*/
 
     }
 
     public bool IsCompletelyHidden()
     {
-        foreach (Word word in _words)
+        int count = 0;
+        foreach (string word in _words)
         {
-            if (!word.IsHidden)
+            if (word == "__")
             {
-                return false;
+                count += 1;
             }
         }
-        return true;
+
+        int lenghtVerse = _words.Count();
+        if (count == lenghtVerse)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    
 
     }
 }
